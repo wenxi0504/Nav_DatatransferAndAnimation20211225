@@ -7,9 +7,12 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -71,10 +74,20 @@ public class HomeFragment extends Fragment {
         getView().findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                EditText editText = getView().findViewById(R.id.editTextTextPersonName );
+                String string=editText.getText().toString();
+                if (TextUtils.isEmpty(string)){
+                    Toast.makeText(getActivity(),"Please enter the name",Toast.LENGTH_SHORT).show();
+                    return ;
+                }
+                Bundle bundle = new Bundle();
+                bundle.putString("my_name",string);
+
+
                 NavController controller= Navigation.findNavController(v);
                 // fragment id or action id(recommend)
                 //controller.navigate(R.id.detailFragment);
-                controller.navigate((R.id.action_homeFragment_to_detailFragment));
+                controller.navigate(R.id.action_homeFragment_to_detailFragment,bundle);
 
             }
         });

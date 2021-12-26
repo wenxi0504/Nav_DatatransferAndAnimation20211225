@@ -68,7 +68,9 @@ public class DetailFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         String string=getArguments().getString("name");
+        String string2 = getArguments().getString("my_name");
         TextView textView=getView().findViewById(R.id.textView);
-        textView.setText(string);
+        //textView.setText(string);
+        textView.setText(string2);
     }
 }
